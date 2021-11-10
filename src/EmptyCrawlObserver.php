@@ -24,7 +24,7 @@ class EmptyCrawlObserver implements CrawlObserver
      *
      * @return void
      */
-    public function hasBeenCrawled(Url $url, $response, Url $foundOnUrl = null)
+    public function hasBeenCrawled(Url $url, $response, Url $foundOnUrl = null, $error = null)
     {
     }
 

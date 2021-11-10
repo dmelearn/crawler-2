@@ -22,7 +22,7 @@ interface CrawlObserver
      *
      * @return void
      */
-    public function hasBeenCrawled(Url $url, $response, Url $foundOnUrl = null);
+    public function hasBeenCrawled(Url $url, $response, Url $foundOnUrl = null, $error = null);
 
     /**
      * Called when the crawl has ended.

@@ -260,7 +260,8 @@ class Crawler
                 'rejected' => function (RequestException $exception, int $index) {
                     $this->handleResponse(
                         $exception->getResponse(),
-                        $this->crawlQueue->getUrlById($index)
+                        $this->crawlQueue->getUrlById($index),
+                        $exception->getMessage() ?? null
                     );
                 },
             ]);
@@ -274,9 +275,9 @@ class Crawler
      * @param ResponseInterface|null $response
      * @param CrawlUrl $crawlUrl
      */
-    protected function handleResponse($response, CrawlUrl $crawlUrl)
+    protected function handleResponse($response, CrawlUrl $crawlUrl, $error = null)
     {
-        $this->crawlObserver->hasBeenCrawled($crawlUrl->url, $response, $crawlUrl->foundOnUrl);
+        $this->crawlObserver->hasBeenCrawled($crawlUrl->url, $response, $crawlUrl->foundOnUrl, $error);
     }
 
     protected function getCrawlRequests(): Generator
