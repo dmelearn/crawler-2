@@ -14,6 +14,7 @@ use Spatie\Browsershot\Browsershot;
 use Symfony\Component\DomCrawler\Link;
 use Psr\Http\Message\ResponseInterface;
 use Dmelearn\Crawler\CrawlQueue\CrawlQueue;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use Dmelearn\Crawler\CrawlQueue\CollectionCrawlQueue;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
@@ -257,12 +258,18 @@ class Crawler
                         $crawlUrl->url
                     );
                 },
-                'rejected' => function (RequestException $exception, int $index) {
-                    $this->handleResponse(
-                        $exception->getResponse(),
-                        $this->crawlQueue->getUrlById($index),
-                        $exception->getMessage() ?? null
-                    );
+                'rejected' => function ($exception, int $index) {
+                    if ($exception instanceof ConnectException) {
+                        $exception = new RequestException('', $exception->getRequest());
+                    }
+                    if ($exception instanceof RequestException) {
+                        $this->handleResponse(
+                            $exception->getResponse(),
+                            $this->crawlQueue->getUrlById($index),
+                            $exception->getMessage() ?? null
+                        );
+                    }
+                    usleep(100);
                 },
             ]);
 
