@@ -4,11 +4,18 @@ All notable changes to `dmelearn/crawler` will be documented in this file.
 
 ### Release
 
+## 2.10.0 - 2023-08-22
+- Support for Guzzle 7.x
+
+## 2.9.0 - 2021-11-15
+- Minimum PHP 7.2
+- The hasBeenCrawled() takes an error message
+
 ## 2.8.0 - 2018-02-09
 - Original Release
 - Keep PHP 7.0 Support
 - Alternative create function for sites with login
-- finishedCrawling function now returns data from crawl
+- The finishedCrawling() function now returns data from crawl
 
 ### Original `spatie/crawler` releases
 
