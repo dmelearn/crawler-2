@@ -54,9 +54,6 @@ class Crawler
     /** @var bool */
     protected $executeJavaScript = false;
 
-    /** @var string|null */
-    protected $pathToChromeBinary = null;
-
     protected static $defaultClientOptions = [
         RequestOptions::COOKIES => true,
         RequestOptions::CONNECT_TIMEOUT => 10,
@@ -171,11 +168,9 @@ class Crawler
     /**
      * @return $this
      */
-    public function executeJavaScript($pathToChromeBinary = null)
+    public function executeJavaScript()
     {
         $this->executeJavaScript = true;
-
-        $this->pathToChromeBinary = $pathToChromeBinary;
 
         return $this;
     }
