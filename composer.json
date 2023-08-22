@@ -7,7 +7,7 @@
         "php": "^8.0",
         "symfony/dom-crawler": "^6.0",
         "guzzlehttp/guzzle": "^7.7",
-        "tightenco/collect": "^6.0",
+        "illuminate/collections": "^10.0|^11.0",
         "nicmart/tree": "^0.4",
         "spatie/browsershot": "^3.0"
     },
